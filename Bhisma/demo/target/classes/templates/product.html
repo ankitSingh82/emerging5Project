@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Form</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=email], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <div style="border-style:solid; width:500px">
+        <h1>Product From</h1>
+        <form
+            role="form"
+            method="post"
+            th:action="@{/product/save}"
+            th:object="${userForm}"
+        >
+            <label>Product_Name:</label>
+            <input type="text" th:field = "*{Product_Name}" />
+            <br />
+            <label>Description:</label>
+            <input type="text" th:field = "*{Description}" />
+            <br />
+            <label>price:</label>
+            <input type="text" th:field="*{price}" />
+            <br />
+            <label>discount:</label>
+            <input type="text" th:field="*{discount}" />
+            <br />
+            
+            <label>active:</label>
+        <input type="radio" th:field="*{active}" value="Yes" />Yes
+        <input type="radio" th:field="*{active}" value="No" />No<br/>
+ 
+        <label>Category:</label>
+        <select th:field="*{Category}">
+            <option th:each="p : ${listCategory}" th:value="${p}" th:text="${p}" />
+        </select>
+            
+            
+            <br />
+            <button type="submit">save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
